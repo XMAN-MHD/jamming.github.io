@@ -18,17 +18,29 @@ class App extends React.Component
       ], 
       playlistName : 'My playlist', 
       playlistTracks :  [
-        {id:1, name:'playlist1', artist:'playlist artist1', album:'playlist album1'},
-        {id:2, name:'playlist2', artist:'playlis tartist2', album:'playlist album2'},
-        {id:3, name:'playlist3', artist:'playlist artist3', album:'playlist album3'}
+        {id:4, name:'playlist1', artist:'playlist artist1', album:'playlist album1'},
+        {id:5, name:'playlist2', artist:'playlis tartist2', album:'playlist album2'},
+        {id:6, name:'playlist3', artist:'playlist artist3', album:'playlist album3'}
       ]
     }
+    this.addTrack = this.addTrack.bind(this);
   }
-  addTrack()
+
+  addTrack(track) 
   {
-    
+    let tracks = this.state.playlistTracks;
+    if(tracks.every(value => value.id !== track.id))
+    {
+      tracks.push(track);
+
+      this.setState(
+        {
+          playlistTracks : tracks
+        }
+      )
+    }
   }
-  render ()
+  render()
   {
     return(
       <div>
@@ -38,7 +50,7 @@ class App extends React.Component
           <SearchBar />
           <div className="App-playlist">
             {/* /Add a SearchResults component below */} 
-            <SearchResults searchResults={this.state.searchResults}/>
+            <SearchResults searchResults={this.state.searchResults} onAdd = {this.addTrack}/>
             {/* Add a Playlist component below */}
             <Playlist playlistName = {this.state.playlistName} playlistTracks = {this.state.playlistTracks}  />
           </div>

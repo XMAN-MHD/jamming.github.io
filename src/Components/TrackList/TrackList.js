@@ -5,6 +5,12 @@ import Track from "../Track/Track";
 
 class TrackList extends React.Component
 {
+    constructor(props)
+    {
+        super(props); 
+        
+    }
+    
     render()
     {
         let tracks = this.props.tracks.slice(0);
@@ -15,7 +21,7 @@ class TrackList extends React.Component
                 {
                     tracks.map(
                         (value, index)=>{
-                            return <Track trackObject = {value} key={index}/>
+                            return <Track onAdd = {this.props.onAdd} trackObject = {value} key={index} />
                         }
                     )
                 }
