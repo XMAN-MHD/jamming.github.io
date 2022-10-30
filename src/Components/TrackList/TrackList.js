@@ -20,8 +20,12 @@ class TrackList extends React.Component
                 {/** add a map method that renders a set of Track components below */}
                 {
                     tracks.map(
-                        (value, index)=>{
-                            return <Track onAdd = {this.props.onAdd} trackObject = {value} key={index} />
+                        (value, index) => {
+                            return <Track 
+                            onAdd = {this.props.onAdd} 
+                            trackObject = {value} key={index}  
+                            onRemove = {this.props.onRemove} isRemoval = {this.props.isRemoval} 
+                            />
                         }
                     )
                 }
